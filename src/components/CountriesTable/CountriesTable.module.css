@@ -1,5 +1,6 @@
 .heading {
     display: flex;
+    padding: 20px;
 }
 
 .heading button {
@@ -9,12 +10,19 @@
     cursor: pointer;
 }
 
-.headingName, 
-.headingPopulation {
+.headingFlag {
     flex: 1;
-    padding: 20px;
+    margin-right: 16px;
+}
+
+.headingName, 
+.headingPopulation,
+.headingArea,
+.headingGini {
+    flex: 4;
     color: var(--text-color-sec);
     font-weight: 500;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +32,6 @@
     justify-content: flex-start;
 }
 
-.headingPopulation {
-    justify-content: flex-end;
-}
 
 .headingArrow {
     color: var(--primary-color);
@@ -56,10 +61,42 @@
 }
 
 .name {
-    flex: 1;
+    flex: 4;
     text-align: left;
 }
 
 .population {
+    flex: 4;
+}
+
+.area {
+    flex: 4;
+}
+
+.gini {
+    flex: 4;
+}
+
+.flag {
     flex: 1;
+    margin-right: 16px;
+}
+
+.flag img {
+    width: 100%;
+    border-radius: 2px;
+}
+
+@media screen and (max-width:720px) {
+    .area, .headingArea {
+        display: none;
+    }
+    
+    .gini, .headingGini {
+        display: none;
+    }
+    
+    .flag, .headingFlag {
+        display: none;
+    }
 }

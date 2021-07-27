@@ -1,6 +1,7 @@
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@material-ui/icons'
 import styles from './CountriesTable.module.css'
 import { useState } from 'react'
+import Link from 'next/link'
 
 const orderByPop = (countries, value, direction) => {
     if (direction === "asc") {
@@ -48,19 +49,44 @@ const CountriesTable = ({countries}) => {
     return (
         <div>
             <div className={styles.heading}>
+                <div className={styles.headingFlag}></div>
                 <button className={styles.headingName} onClick={() => setValueAndDirection("name")}>
                     <div>Name</div>
-                    <SortArrow direction={direction}/>
+                    {value === 'name' && <SortArrow direction={direction} />}
                 </button>
+
                 <button className={styles.headingPopulation} onClick={() => setValueAndDirection("population")}>
                     <div>Population</div>
-                    <SortArrow direction={direction} />
+                    {value === 'population' && <SortArrow direction={direction} />}
                 </button>
+
+                <button className={styles.headingArea} onClick={() => setValueAndDirection("area")}>
+                    <div>Area (km <sup style={{fontSize:"0.5rem"}}>2</sup>)</div>
+                    {value === 'area' && <SortArrow direction={direction} />}
+                </button>
+
+                <button className={styles.headingGini} onClick={() => setValueAndDirection("gini")}>
+                    <div>Gini</div>
+                    {value === 'gini' && <SortArrow direction={direction} />}
+                </button>
+
             </div>
-            {orderedCountries.map((country) => <div className={styles.row}>
-                    <div className={styles.name}>{country.name}</div>
-                    <div className={styles.polpulation}>{country.population}</div>
-                </div>)}
+            {orderedCountries.map((country) => (
+                <Link href={`/country/${country.alpha3Code}`} key={country.name}>
+                    <div className={styles.row}>
+                        <div className={styles.flag}>
+                            <img src={country.flag} alt={country.name}/>
+                        </div>
+                        <div className={styles.name}>{country.name}</div>
+                        
+                        <div className={styles.population}>{country.population}</div>
+                        
+                        <div className={styles.area}>{country.area || 0}</div>
+                        
+                        <div className={styles.gini}>{country.gini || 0}%</div>
+                    </div>
+                </Link>
+                ))}
         </div>
     )
 }

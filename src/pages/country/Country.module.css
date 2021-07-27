@@ -1,0 +1,109 @@
+.overviewPanel img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.overviewPanel {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color-light);
+}
+
+.overviewName {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.overviewRegion {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 4px;
+    margin-bottom: 24px;
+}
+
+.overviewNumber {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: center;
+}
+
+.overviewValue {
+    font-size: 14px;
+    color: var(--text-color-sec);
+
+}
+
+.detailPanel {
+    background-color: var(--background-color-light);
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    padding-bottom: 0;
+}
+
+.detailPanelHead {
+    padding: 20px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.detailPanelRow {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detailPanelLabel {
+    color: var(--text-color-sec);
+}
+
+.detailPanelBorders {
+    padding: 20px;
+}
+
+.detailPanelBorders img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.detailPanelBorderContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 24px;
+}
+
+.detailPanelBorderCountries {
+    text-align: center;
+}
+
+.detailPanelBorderLabel {
+    color: var(--text-color-sec);
+    margin-bottom: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+}
+
+@media screen and (min-width: 720px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+    }
+
+    .contLeft {
+        grid-column: 1 / span 4;
+    }
+
+    .contRight {
+        grid-column: 5 / span 8;
+    }
+}

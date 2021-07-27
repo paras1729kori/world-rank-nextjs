@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 import Layout from '../components/Layout/Layout'
@@ -8,20 +7,36 @@ import CountriesTable from '../components/CountriesTable/CountriesTable'
 
 export default function Home({countries}) {
   // console.log(countries.length)
+  const [keyword, setKeyword] = useState("")
+  const filterCountries = countries.filter((country) => 
+    country.name.toLowerCase().includes(keyword) || country.region.toLowerCase().includes(keyword) || country.subregion.toLowerCase().includes(keyword)
+  )
+
+  const onInputChange = (e) => {
+    e.preventDefault()
+    setKeyword(e.target.value.toLowerCase())
+  }
+
   return (
     <Layout>
-      <div className={styles.counts}>Found {countries.length} countries</div>
-      
-      <SearchInput placeholder="Filter by Name, Region or Sub-Region" />
-    
-      <CountriesTable countries={countries}/>
+      <div className={styles.inputContainer}>
+        <div className={styles.counts}>Found {countries.length} countries</div>
+        <div className={styles.input}>
+          <SearchInput 
+            placeholder="Filter by Name, Region or Sub-Region"
+            onChange={onInputChange} 
+          />
+        </div>
+      </div>
+
+      <CountriesTable countries={filterCountries}/>
 
     </Layout>
   )
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://restcountries.eu/rest/v2/all?fields=name;population')
+  const res = await fetch('https://restcountries.eu/rest/v2/all')
   const countries = await res.json()
 
   return {
